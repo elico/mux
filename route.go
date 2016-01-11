@@ -234,7 +234,7 @@ func (r *Route) HeadersRegexp(pairs ...string) *Route {
 	return r
 }
 
-func (r *Route) getMatchers() []matcher {
+func (r *Route) GetMatchers() []matcher {
 	return r.matchers
 }
 

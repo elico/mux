@@ -234,6 +234,10 @@ func (r *Route) HeadersRegexp(pairs ...string) *Route {
 	return r
 }
 
+func (r *Route) getMatchers() []matcher {
+	return r.matchers
+}
+
 // Host -----------------------------------------------------------------------
 
 // Host adds a matcher for the URL host.

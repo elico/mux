@@ -108,6 +108,10 @@ func (r *Router) Get(name string) *Route {
 	return r.getNamedRoutes()[name]
 }
 
+func (r *Router) GetAll() map[string]*Route {
+	return r.getNamedRoutes()
+}
+
 
 // GetRoute returns a route registered with the given name. This method
 // was renamed to Get() and remains here for backwards compatibility.

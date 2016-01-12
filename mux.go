@@ -186,11 +186,26 @@ func (r *Router) Handle(path string, handler http.Handler) *Route {
 	return r.NewRoute().Path(path).Handler(handler)
 }
 
+func (r *Router) HandleWithName(path string, handler http.Handler) *Route {
+	rt := r.NewRouteOnly().Path(path).Handler(handler)
+	rt.Name(path)
+	r.routes = append(r.routes, rt)
+	return rt
+}
+
 // HandleFunc registers a new route with a matcher for the URL path.
 // See Route.Path() and Route.HandlerFunc().
 func (r *Router) HandleFunc(path string, f func(http.ResponseWriter,
 	*http.Request)) *Route {
 	return r.NewRoute().Path(path).HandlerFunc(f)
+}
+
+func (r *Router) HandleFuncWithName(path string, f func(http.ResponseWriter,
+	*http.Request)) *Route {
+	rt := r.NewRouteOnly().Path(path).HandlerFunc(f)
+	rt.Name(path)
+	r.routes = append(r.routes, rt)
+	return rt
 }
 
 // Headers registers a new route with a matcher for request header values.

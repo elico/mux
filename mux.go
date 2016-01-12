@@ -244,6 +244,13 @@ func (r *Router) PathPrefix(tpl string) *Route {
 	return r.NewRoute().PathPrefix(tpl)
 }
 
+func (r *Router) PathPrefixWithName(tpl string) *Route {
+	rt := r.NewRouteOnly().PathPrefix(tpl)
+	rt.Name(tpl)
+	r.routes = append(r.routes, rt)
+	return rt
+}
+
 // Queries registers a new route with a matcher for URL query values.
 // See Route.Queries().
 func (r *Router) Queries(pairs ...string) *Route {

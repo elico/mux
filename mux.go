@@ -175,6 +175,11 @@ func (r *Router) NewRoute() *Route {
 	return route
 }
 
+func (r *Router) NewRouteOnly() *Route {
+	route := &Route{parent: r, strictSlash: r.strictSlash}
+	return route
+}
+
 // Handle registers a new route with a matcher for the URL path.
 // See Route.Path() and Route.Handler().
 func (r *Router) Handle(path string, handler http.Handler) *Route {
